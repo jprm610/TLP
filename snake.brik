@@ -1,46 +1,46 @@
-# --- Juego Snake en BRIK-Creativo v5 ---
+# --- Juego Snake en BRIK-Creativo v6 ---
 game := ¿
-  title   := "Grid Serpent"
-  mode    := "snake"
-  version := "5.0"
+  title   := "Grid Serpent",
+  mode    := "snake",
+  version := "6.0",
   tick_ms := 60
 ?
 
 grid := ¿
-  cols    := 20
-  rows    := 15
-  cell_px := 24
+  cols    := 20,
+  rows    := 15,
+  cell_px := 24,
   bg      := "dark"
 ?
 
 palette := ¿
-  dark   := "#101820"
-  snake  := "#2ECC71"
+  dark   := "#101820",
+  snake  := "#2ECC71",
   food   := "#E74C3C"
 ?
 
 pieces := ¿
   player := ¿
-    kind  := "snake"
-    color := "snake"
+    kind  := "snake",
+    color := "snake",
     size  := 3
-  ?
+  ?,
   pellet := ¿
-    kind  := "food"
+    kind  := "food",
     color := "food"
   ?
 ?
 
 mechanics := ¿
-  step_blocks_per_sec := 6
-  grow_on_food        := 1
-  path_preview        := ¡ "head", "body", "tail" !
+  step_blocks_per_sec := 6,
+  grow_on_food        := 1,
+  path_preview        := ¡ "head" , "body" , "tail" !
 ?
 
 input := ¿
-  up    := "ArrowUp"
-  down  := "ArrowDown"
-  left  := "ArrowLeft"
-  right := "ArrowRight"
+  up    := "ArrowUp",
+  down  := "ArrowDown",
+  left  := "ArrowLeft",
+  right := "ArrowRight",
   pause := "KeyP"
 ?

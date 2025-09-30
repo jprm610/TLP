@@ -1,50 +1,80 @@
-# --- Juego Tetris en BRIK-Creativo v5 ---
+# --- Juego Tetris en BRIK-Creativo v6 ---
 game := ¿
-  title   := "Falling Blocks"
-  mode    := "tetris"
-  version := "5.0"
+  title   := "Falling Blocks",
+  mode    := "tetris",
+  version := "1.0",
   tick_ms := 16
 ?
 
 grid := ¿
-  cols    := 10
-  rows    := 20
-  cell_px := 24
+  cols    := 10,
+  rows    := 20,
+  cell_px := 24,
   bg      := "dark"
 ?
 
 palette := ¿
-  dark   := "#0E0F19"
-  cyan   := "#3CDFFF"
+  dark   := "#0E0F19",
+  cyan   := "#3CDFFF",
   yellow := "#F2E94E"
 ?
 
 pieces := ¿
   I := ¿
-    kind      := "tetromino"
-    color     := "cyan"
-    spawn_col := 3
+    kind      := "tetromino",
+    color     := "cyan",
+    spawn_col := 3,
     mask      := ¡ "####" !
-  ?
+  ?,
   O := ¿
-    kind      := "tetromino"
-    color     := "yellow"
-    spawn_col := 4
+    kind      := "tetromino",
+    color     := "yellow",
+    spawn_col := 4,
     mask      := ¡ "##", "##" !
+  ?,
+  T := ¿
+    kind      := "tetromino",
+    color     := "purple",
+    spawn_col := 3,
+    mask      := ¡ "###", ".#." !
+  ?,
+  S := ¿
+    kind      := "tetromino",
+    color     := "green",
+    spawn_col := 3,
+    mask      := ¡ ".##", "##." !
+  ?,
+  Z := ¿
+    kind      := "tetromino",
+    color     := "red",
+    spawn_col := 3,
+    mask      := ¡ "##.", ".##" !
+  ?,
+  J := ¿
+    kind      := "tetromino",
+    color     := "blue",
+    spawn_col := 3,
+    mask      := ¡ "###", "..#" !
+  ?,
+  L := ¿
+    kind      := "tetromino",
+    color     := "orange",
+    spawn_col := 3,
+    mask      := ¡ "###", "#.." !
   ?
 ?
 
 mechanics := ¿
-  gravity_blocks_per_sec := 1
-  lock_delay_ms          := 500
-  line_score := ¿ single := 100 double := 300 triple := 500 tetris := 800 ?
+  gravity_blocks_per_sec := 1,
+  lock_delay_ms          := 500,
+  line_score := ¿ single := 100, double := 300, triple := 500, tetris := 800 ?
 ?
 
 input := ¿
-  left   := "ArrowLeft"
-  right  := "ArrowRight"
-  soft   := "ArrowDown"
-  hard   := "Space"
-  rotate := "KeyZ"
+  left   := "ArrowLeft",
+  right  := "ArrowRight",
+  soft   := "ArrowDown",
+  hard   := "Space",
+  rotate := "KeyZ",
   pause  := "KeyP"
 ?
