@@ -1,8 +1,8 @@
 # --- Juego Tetris en BRIK-Creativo v6 ---
 game := ¿
-  title   := "Falling Blocks",
+  title   := "Falling Blocks Plus",
   mode    := "tetris",
-  version := "1.0",
+  version := "6.1",
   tick_ms := 16
 ?
 
@@ -16,7 +16,12 @@ grid := ¿
 palette := ¿
   dark   := "#0E0F19",
   cyan   := "#3CDFFF",
-  yellow := "#F2E94E"
+  yellow := "#F2E94E",
+  purple := "#B980F0",
+  green  := "#78E08F",
+  red    := "#FF6B6B",
+  blue   := "#54A0FF",
+  orange := "#FF9F43"
 ?
 
 pieces := ¿
@@ -24,49 +29,59 @@ pieces := ¿
     kind      := "tetromino",
     color     := "cyan",
     spawn_col := 3,
+    max_rotations := 1,
     mask      := ¡ "####" !
   ?,
   O := ¿
     kind      := "tetromino",
     color     := "yellow",
     spawn_col := 4,
+    max_rotations := 0,
     mask      := ¡ "##", "##" !
   ?,
   T := ¿
     kind      := "tetromino",
     color     := "purple",
     spawn_col := 3,
+    max_rotations := 1,
     mask      := ¡ "###", ".#." !
   ?,
   S := ¿
     kind      := "tetromino",
     color     := "green",
     spawn_col := 3,
+    max_rotations := 1,
     mask      := ¡ ".##", "##." !
   ?,
   Z := ¿
     kind      := "tetromino",
     color     := "red",
     spawn_col := 3,
+    max_rotations := 1,
     mask      := ¡ "##.", ".##" !
   ?,
   J := ¿
     kind      := "tetromino",
     color     := "blue",
     spawn_col := 3,
+    max_rotations := 1,
     mask      := ¡ "###", "..#" !
   ?,
   L := ¿
     kind      := "tetromino",
     color     := "orange",
     spawn_col := 3,
+    max_rotations := 1,
     mask      := ¡ "###", "#.." !
   ?
 ?
 
 mechanics := ¿
-  gravity_blocks_per_sec := 1,
-  lock_delay_ms          := 500,
+  gravity_blocks_per_sec   := 1,
+  gravity_increase_per_level := 0.25,
+  level_lines_to_increase  := 10,
+  default_max_rotations    := 1,
+  lock_delay_ms            := 500,
   line_score := ¿ single := 100, double := 300, triple := 500, tetris := 800 ?
 ?
 
@@ -78,3 +93,12 @@ input := ¿
   rotate := "KeyZ",
   pause  := "KeyP"
 ?
+
+hud := ¿
+  score_prefix := "Score: ",
+  level_prefix := "Lvl: "
+?
+
+end_game_rule = {
+    condition = "piece_reaches_top"
+}
