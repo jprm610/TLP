@@ -1,8 +1,8 @@
-# --- Juego Snake en BRIK-Creativo v6 ---
+# --- Juego Snake en BRIK-Creativo v6 (completo) ---
 game := ¿
-  title   := "Grid Serpent",
+  title   := "Grid Serpent Plus",
   mode    := "snake",
-  version := "6.0",
+  version := "6.3",
   tick_ms := 60
 ?
 
@@ -16,7 +16,9 @@ grid := ¿
 palette := ¿
   dark   := "#101820",
   snake  := "#2ECC71",
-  food   := "#E74C3C"
+  food   := "#E74C3C",
+  bitter := "#8E44AD",
+  pepper := "#F39C12"
 ?
 
 pieces := ¿
@@ -27,14 +29,49 @@ pieces := ¿
   ?,
   pellet := ¿
     kind  := "food",
-    color := "food"
+    color := "food",
+    grow  := 1
+  ?,
+  bitter := ¿
+    kind  := "food",
+    color := "bitter",
+    grow  := -1        # reduce longitud en 1 (no baja de min_length)
+  ?,
+  pepper := ¿
+    kind              := "food",
+    color             := "pepper",
+    speed_delta_bps   := 2,      # +2 bloques/seg
+    speed_duration_ms := 4000    # por 4 s
   ?
 ?
 
 mechanics := ¿
+  # Velocidad base y crecimiento estándar
   step_blocks_per_sec := 6,
   grow_on_food        := 1,
-  path_preview        := ¡ "head" , "body" , "tail" !
+
+  # Colisiones y movimiento
+  wrap_edges       := "off",
+  fail_on_self_hit := "on",
+  allow_backtrack  := "off",     # evita giro 180° inmediato
+  min_length       := 2,         # nunca menos de 2 segmentos
+
+  # Efectos de velocidad (pepper)
+  speed_effect := ¿
+    stacking      := "reset",    # "reset" (reinicia timer), "stack" (acumula), "ignore"
+    max_bonus_bps := 4           # tope al bonus total de velocidad
+  ?,
+
+  # Aparición de comida
+  food_spawn := ¿
+    max_concurrent   := 1,                             # cuántos ítems simultáneos
+    respawn_delay_ms := 250,                           # reaparición tras comer
+    options          := ¡ pellet , bitter , pepper !,  # catálogo a spawnear
+    probability      := ¿ pellet := 0.95, bitter := 0.02, pepper := 0.03 ?
+  ?,
+
+  # Puntajes por ítem (para HUD/ranking)
+  scoring := ¿ pellet := 10, bitter := 5, pepper := 15 ?
 ?
 
 input := ¿
@@ -43,4 +80,9 @@ input := ¿
   left  := "ArrowLeft",
   right := "ArrowRight",
   pause := "KeyP"
+?
+
+hud := ¿
+  score_prefix := "Score: ",
+  speed_prefix := "Spd: "
 ?
