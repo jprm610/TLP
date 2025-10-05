@@ -99,6 +99,6 @@ hud := ¿
   level_prefix := "Lvl: "
 ?
 
-end_game_rule = {
-    condition = "piece_reaches_top"
-}
+end_game_rule := ¿
+    condition := "piece_reaches_top"
+?
